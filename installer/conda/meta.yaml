@@ -25,13 +25,31 @@ requirements:
   run:
     - python
     - orange3
+    - orange3-bioinformatics
+    - pandas
+    - fastdtw
+    - astropy
+    - loompy
     - networkx
 
 test:
+  # Python imports
   imports:
+    - orangecontrib
+    
+    # bioinformatics
+    - orangecontrib.bioinformatics
+
+    # single_cell
+    - orangecontrib.single_cell
     - orangecontrib.single_cell.__main__
+    - orangecontrib.single_cell.widgets
+    - orangecontrib.single_cell.preprocess
+    - orangecontrib.single_cell.tutorials
   commands:
     - python -m orangecontrib.single_cell --help
+    # note: tests fail ... fixme
+    # - python -m unittest -v orangecontrib.single_cell.tests
     - test -f $PREFIX/help/orange3-single_cell/index.html  # [unix]
 about:
   home: https://singlecell.biolab.si/
@@ -43,3 +61,5 @@ about:
 extra:
   recipe-maintainers:
     - astaric
+    - jakakokosar
+    - lanzagar
