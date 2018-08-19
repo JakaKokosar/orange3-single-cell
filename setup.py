@@ -21,7 +21,7 @@ LICENSE = 'GPLv3+'
 KEYWORDS = (
     # [PyPi](https://pypi.python.org) packages with keyword "orange3 add-on"
     # can be installed using the Orange Add-on Manager
-    'orange3 add-on',
+    # 'orange3 add-on',
 )
 
 PACKAGES = find_packages()

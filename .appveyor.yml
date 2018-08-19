@@ -1,22 +1,50 @@
-build: false
+image:
+  - Visual Studio 2015
+
+# Skip .NET project specific build phase.
+build: off
+
+platform:
+    - x64
 
 environment:
   matrix:
-    - PYTHON_VERSION: 3.6
-      MINICONDA: C:\Miniconda3
+    - CONFIG: win_c_compilervs2015python3.6
+      CONDA_PY: 36
+      CONDA_INSTALL_LOCN: C:\Miniconda36-x64
+
 
 init:
-  - "ECHO %PYTHON_VERSION% %MINICONDA%"
-
+  - call "C:\Program Files\Microsoft SDKs\Windows\v7.1\Bin\SetEnv.cmd" /x64
+  - call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86_amd64
+  
 install:
-  - "set PATH=%MINICONDA%;%MINICONDA%\\Scripts;%PATH%"
-  - conda config --set always_yes yes --set changeps1 no
-  - conda update -q conda
-  - conda config --add channels conda-forge
-  - conda install conda-build
-  - conda-build ./installer/conda
-  - conda install --use-local orange3-single-cell
-  - conda list --export --explicit --md5
+    # Add path, activate `conda` and update conda.
+    - cmd: call %CONDA_INSTALL_LOCN%\Scripts\activate.bat
+    - cmd: conda.exe update --yes --quiet conda
+
+    # add channels
+    - cmd: conda.exe config --add channels conda-forge
+    - cmd: conda.exe config --add channels bioconda # bioconda is needed for 'fastdtw', 'loompy'
+
+    # install conda build package
+    - cmd: conda.exe install -n root --quiet --yes conda-build
+
+    # build conda recipe
+    - cmd: conda.exe build ./installer/conda
+
+  #- set PATH=%MINICONDA%;%MINICONDA%\\Scripts;%PATH%
+  #- set "PATH=%PYTHON%;%PYTHON%\Scripts;%PATH%"
+  #- conda config --set always_yes yes --set changeps1 no
+  #- conda update -q conda
+  #- conda config --add channels conda-forge
+  #- conda config --add channels bioconda # bioconda is needed for 'fastdtw', 'loompy'
+  #- conda install conda-build
+  #- conda-build ./installer/conda
+  #- conda install --use-local orange3-single-cell
+  #- conda list --export --explicit --md5
 
 test_script:
-  # - nosetests
+    # install single_cell in fresh enviroment
+    - cmd: conda.exe create --use-local -y -n scOrange python=3.6 orange3-single-cell
+    - cmd: conda.exe list -n scOrange --export --explicit --md5
