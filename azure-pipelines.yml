@@ -6,8 +6,6 @@
 trigger:
 - master
 
-jobs:
-
 strategy:
   matrix:
     linux:
@@ -16,6 +14,8 @@ strategy:
       imageName: 'macos-10.13'
     windows:
       imageName: 'vs2017-win2016'
+
+jobs:
 
 - job: 'Test'
   pool:
