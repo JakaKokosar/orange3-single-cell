@@ -63,13 +63,13 @@ jobs:
 
   - script: python -m pip install -U pip setuptools wheel && pip install -r requirements.txt && pip install PyQt5
     displayName: 'Install dependencies'
-    continueOnError: false
-    
+
   - script: |
-      pwd
+      pip install Orange3-SingleCell
       pip install .
       pip list
     displayName: 'Install add-on'
+    continueOnError: false
     
   - script: |
       pip list
