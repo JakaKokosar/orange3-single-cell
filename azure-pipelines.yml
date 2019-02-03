@@ -65,7 +65,7 @@ jobs:
     displayName: 'Install dependencies'
 
   - script: |
-      pip install Orange3-SingleCell
+      python setup.py --verbose install
       pip list
     displayName: 'Install add-on'
     continueOnError: false
