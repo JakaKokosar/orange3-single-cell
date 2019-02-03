@@ -27,11 +27,15 @@ jobs:
 
   - script: python -m pip install --upgrade pip && pip install -r requirements.txt
     displayName: 'Install dependencies'
-
+    
+  - script: pip install -e .
+    displayName: 'Install dependencies'
+    
   - script: |
       pip install pytest
+      pip install pytest-cov
       cd orangecontrib/single_cell/
-      pytest tests --doctest-modules --junitxml=junit/test-results.xml
+      pytest tests --doctest-modules --junitxml=junit/test-results.xml --cov=com --cov-report=xml --cov-report=html
     displayName: 'pytest'
 
   - task: PublishTestResults@2
@@ -59,11 +63,15 @@ jobs:
 
   - script: python -m pip install --upgrade pip && pip install -r requirements.txt
     displayName: 'Install dependencies'
+    
+  - script: pip install -e .
+    displayName: 'Install dependencies'
 
   - script: |
       pip install pytest
+      pip install pytest-cov
       cd orangecontrib/single_cell/
-      pytest tests --doctest-modules --junitxml=junit/test-results.xml
+      pytest tests --doctest-modules --junitxml=junit/test-results.xml --cov=com --cov-report=xml --cov-report=html
     displayName: 'pytest'
 
   - task: PublishTestResults@2
@@ -93,10 +101,14 @@ jobs:
   - script: python -m pip install --upgrade pip && pip install -r requirements.txt
     displayName: 'Install dependencies'
 
+  - script: pip install -e .
+    displayName: 'Install dependencies'
+
   - script: |
       pip install pytest
+      pip install pytest-cov
       cd orangecontrib/single_cell/
-      pytest tests --doctest-modules --junitxml=junit/test-results.xml
+      pytest tests --doctest-modules --junitxml=junit/test-results.xml --cov=com --cov-report=xml --cov-report=html
     displayName: 'pytest'
 
   - task: PublishTestResults@2
