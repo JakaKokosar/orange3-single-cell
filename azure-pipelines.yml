@@ -61,10 +61,13 @@ jobs:
       versionSpec: '$(python.version)'
       architecture: 'x64'
 
-  - script: python -m pip install --upgrade pip && pip install -r requirements.txt && pip install PyQt5
+  - script: python -m pip install --upgrade pip && --upgrade setuptools && pip install -r requirements.txt && pip install PyQt5
     displayName: 'Install dependencies'
     
-  - script: pip install .
+  - script: |
+      pwd
+      pip install .
+      pip list
     displayName: 'Install add-on'
     
   - script: |
