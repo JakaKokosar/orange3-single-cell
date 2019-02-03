@@ -66,6 +66,12 @@ jobs:
     
   - script: pip install .
     displayName: 'Install add-on'
+    
+  - script: |
+      pip list
+      which pip
+      which python
+    displayName: 'sanity check'
 
   - script: |
       pip install pytest
