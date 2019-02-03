@@ -30,7 +30,7 @@ jobs:
 
   - script: |
       pip install pytest
-      cd /orangecontrib/single_cell/tests
+      cd /orangecontrib/single_cell/
       pytest tests --doctest-modules --junitxml=junit/test-results.xml
     displayName: 'pytest'
 
@@ -62,7 +62,7 @@ jobs:
 
   - script: |
       pip install pytest
-      cd /orangecontrib/single_cell/tests
+      cd /orangecontrib/single_cell/
       pytest tests --doctest-modules --junitxml=junit/test-results.xml
     displayName: 'pytest'
 
@@ -95,7 +95,7 @@ jobs:
 
   - script: |
       pip install pytest
-      cd /orangecontrib/single_cell/tests
+      cd /orangecontrib/single_cell/
       pytest tests --doctest-modules --junitxml=junit/test-results.xml
     displayName: 'pytest'
 
