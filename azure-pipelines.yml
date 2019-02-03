@@ -17,7 +17,7 @@ strategy:
     windows:
       imageName: 'vs2017-win2016'
 
-- job: 'Run Test for Orange3-single-cell'
+- job: 'Test'
   pool:
     vmImage: $(imageName)
   strategy:
