@@ -71,18 +71,12 @@ jobs:
   - script: python -m pip install -e . --no-deps --ignore-installed --no-cache-dir -vvv
     displayName: 'Install add-on'
     continueOnError: false
-    
+ 
   - script: |
-      pip list
-      which pip
-      which python
-    displayName: 'sanity check'
-
-  - script: |
+      python setup.py test
       pip install pytest
       pip install pytest-cov
-      cd orangecontrib/single_cell/
-      pytest tests --doctest-modules --junitxml=junit/test-results.xml --cov=com --cov-report=xml --cov-report=html
+      pytest orangecontrib/single_cell/tests --doctest-modules --junitxml=junit/test-results.xml --cov=com --cov-report=xml --cov-report=html
     displayName: 'pytest'
 
   - task: PublishTestResults@2
