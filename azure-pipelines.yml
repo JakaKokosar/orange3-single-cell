@@ -28,7 +28,7 @@ jobs:
   - script: python -m pip install --upgrade pip && pip install -r requirements.txt && pip install PyQt5
     displayName: 'Install dependencies'
     
-  - script: pip install .
+  - script: pip install -v .
     displayName: 'Install add-on'
     
   - script: |
@@ -64,9 +64,7 @@ jobs:
   - script: python -m pip install -U pip setuptools wheel && pip install -r requirements.txt && pip install PyQt5
     displayName: 'Install dependencies'
 
-  - script: |
-      python setup.py --verbose install
-      pip list
+  - script: pip install -v .
     displayName: 'Install add-on'
     continueOnError: false
     
@@ -110,7 +108,7 @@ jobs:
   - script: python -m pip install --upgrade pip && pip install -r requirements.txt && pip install PyQt5
     displayName: 'Install dependencies'
 
-  - script: pip install .
+  - script: pip install -v .
     displayName: 'Install add-on'
 
   - script: |
