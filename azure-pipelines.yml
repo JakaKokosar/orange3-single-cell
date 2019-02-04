@@ -64,7 +64,7 @@ jobs:
   - script: python -m pip install -U pip setuptools wheel && pip install -r requirements.txt && pip install PyQt5
     displayName: 'Install dependencies'
 
-  - script: pip install -v .
+  - script: python -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv
     displayName: 'Install add-on'
     continueOnError: false
     
