@@ -68,7 +68,7 @@ jobs:
     displayName: 'Build docs'
     continueOnError: false
 
-  - script: python -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv
+  - script: python -m pip install -e . --no-deps --ignore-installed --no-cache-dir -vvv
     displayName: 'Install add-on'
     continueOnError: false
     
