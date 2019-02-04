@@ -63,6 +63,10 @@ jobs:
 
   - script: python -m pip install -U pip setuptools wheel sphinx recommonmark && pip install -r requirements.txt && pip install PyQt5
     displayName: 'Install dependencies'
+    
+  - script: cd doc && make htmlhelp
+    displayName: 'Build docs'
+    continueOnError: false
 
   - script: python -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv
     displayName: 'Install add-on'
