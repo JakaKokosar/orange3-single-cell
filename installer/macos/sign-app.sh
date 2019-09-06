@@ -7,9 +7,9 @@ CERT="Developer ID Application: Univerza v Ljubljani"
 rm -rf $APP
 ./build-macos-app.sh $APP
 # Missing symlink Current messes with code signing
-ln -s 3.6 $APP/Contents/Frameworks/Python.framework/Versions/Current
+ln -s 3.7 $APP/Contents/Frameworks/Python.framework/Versions/Current
 # sign bundle
-codesign -s "$CERT" $APP/Contents/Frameworks/Python.framework/Versions/3.6
+codesign -s "$CERT" $APP/Contents/Frameworks/Python.framework/Versions/3.7
 codesign -s "$CERT" $APP/Contents/MacOS/pip
 codesign -s "$CERT" $APP
 

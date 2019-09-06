@@ -1,45 +1,61 @@
-{% set data = load_setup_py_data() %}
-{% set name = "orange3-singlecell" %}
-{% set version = data['version'] %}
-
-package:
-  name: {{ name|lower }}
-  version: {{ data['version'] }}
-
-source:
-  git_url: ../../
-
-build:
-  number: 0
-  noarch: python
-  script:
-    - cd doc && make htmlhelp && cd ..
-    - python setup.py install --single-version-externally-managed --record record.txt
-
-requirements:
-  build:
-    - python
-    - sphinx
-    - recommonmark
-    - setuptools
-  run:
-    - python
-    - orange3
-    - networkx
-
-test:
-  imports:
-    - orangecontrib.single_cell.__main__
-  commands:
-    - python -m orangecontrib.single_cell --help
-    - test -f $PREFIX/help/orange3-single_cell/index.html  # [unix]
-about:
-  home: https://singlecell.biolab.si/
-  license: GPL-3
-  license_family: GPL
-  license_file: LICENSE
-  summary: 'Single-cell Orange'
-
-extra:
-  recipe-maintainers:
-    - astaric
+#{% set name = "orange3-singlecell" %}
+#
+#package:
+#  name: {{ name|lower }}
+#  version: {{ GIT_DESCRIBE_TAG }}
+#
+#source:
+#  git_url: ../../
+#
+#build:
+#  number: 0
+#  noarch: python
+#  script: "python setup.py install --single-version-externally-managed --record record.txt"
+#  entry_points:
+#    - vcftutorials = orangecontrib.single_cell.tutorials:main
+#    - html-index = orangecontrib.single_cell.widgets:WIDGET_HELP_PATH
+#    - Single Cell = orangecontrib.single_cell.widgets:main
+#
+#requirements:
+#  host:
+#    - python >=3
+#    - pip
+#    - sphinx
+#    - recommonmark
+#    - setuptools
+#    - setuptools_scm
+#  run:
+#    - python >=3
+#    - orange3
+#    - orange3-bioinformatics
+#    - pandas
+#    - fastdtw
+#    - loompy
+#    - networkx
+#    - anndata
+#
+#test:
+#  # Python imports
+#  imports:
+#    - orangecontrib.single_cell
+#    - orangecontrib.single_cell.__main__
+#    - orangecontrib.single_cell.widgets
+#    - orangecontrib.single_cell.preprocess
+#    - orangecontrib.single_cell.tutorials
+#  commands:
+#    - python -m orangecontrib.single_cell --help
+#    - test -f $PREFIX/help/orange3-single_cell/index.html  # [unix]
+#
+#about:
+#  home: https://singlecell.biolab.si/
+#  license: GPL-3
+#  license_family: GPL
+#  license_file: LICENSE
+#  summary: 'Single-cell Orange'
+#
+#extra:
+#  recipe-maintainers:
+#    - jakakokosar
+#    - astaric
+#    - lanzagar
+#    - ales-erjavec

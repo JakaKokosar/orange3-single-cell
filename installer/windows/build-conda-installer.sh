@@ -45,8 +45,8 @@ DISTDIR=
 CACHEDIR=
 
 # Python version in the Miniconda installer.
-MINICONDA_VERSION=4.5.11
-PYTHON_VERSION=3.7.0
+MINICONDA_VERSION=4.7.10
+PYTHON_VERSION=3.7.3
 
 PLATTAG=win_amd64
 
@@ -177,7 +177,6 @@ fetch-miniconda() {
     local dest="${destdir}/${filename}"
     if [[ ! -f "${dest}" ]]; then
         local tmpname=$(mktemp "${dest}.XXXXX")
-        echo Downloading ${url}
         if curl -fSL -o "${tmpname}" "${url}/${filename}"; then
             mv "${tmpname}" "${dest}"
         else
@@ -272,14 +271,12 @@ fetch-files() {
                         test -f "${tmpname}" && rm -f "${tmpname}" || true;
                     }
                     trap cleanup EXIT
-                    echo Downloading ${url}
                     curl -fSL -o "${tmpname}" "${url}" || exit 1
                     mv "${tmpname}" "${cache}/${fname}"
                 )
             fi
             cp "${cache}/${fname}" "${destdir}"
         else
-            echo Downloading ${url}
             ( cd "${destdir}"; curl -fSL -O "${url}" )
         fi
     done

@@ -14,10 +14,10 @@ conda build "$INSTALLER/conda" \
 NEW_SPEC="$BUILD/conda/conda-spec.txt"
 sed '/^file/ d' \
   "$INSTALLER/windows/specs/conda-spec.txt" \
-  > $NEW_SPEC 
-CONDA_PACKAGE=$( find "$BUILD/conda" \
-  -name "orange3-singlecell*" \
-  -exec echo "file://{}" \; )
+  > $NEW_SPEC
+#CONDA_PACKAGE=$( find "$BUILD/conda" \
+#  -name "orange3-singlecell*" \
+#  -exec echo "file://{}" \; )
 echo "$CONDA_PACKAGE" >> $NEW_SPEC
 
 # Build new installer
